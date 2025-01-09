@@ -71,8 +71,8 @@ function playGame()
     playRound(humanSelection,computerSelection);
 }
    if(humanScore>computerScore)
-    return "Human Wins";
+    console.log( "Human Wins");
    else
-    return "Computer Wins";
+    console.log( "Computer Wins");
 }
-
+playGame();
