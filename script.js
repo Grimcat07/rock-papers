@@ -9,14 +9,36 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let hchoice=parseInt(prompt('enter your choice (1,2,3):\n\'1\'.Rock\n\'2\'.Papers\n\'3\'.Scissors'));
-    if(hchoice===1)
+    let choicev=(prompt('enter your choice:\n1.Rock\n2.Paper\n3.Scissors'));
+    const hchoice=choicev.toLowerCase();
+    
+    if(hchoice==="rock")
         return "rock";
-    else if(hchoice===2)
+    else if(hchoice==="paper")
         return "paper";
-    else if(hchoice===3)
+    else if(hchoice==="scissors")
         return "scissors";
     else
         return "WRONG CHOICE";
 
 }
+
+let humanScore=0;
+let computerScore=0;
+
+function playRound(humanChoice,computerChoice){
+ 
+    if(humanChoice=='rock' && computerChoice=='rock' || humanChoice=='paper' && computerChoice=='paper' ||  humanChoice=='scissors' && computerChoice=='scissors' ) 
+    {
+        return "the round is a tie";
+    } 
+    if(humanChoice=='rock' && computerChoice=='paper' || humanChoice=='paper' && computerChoice=='rock' || humanChoice=='rock' && computerChoice=='scissors')  
+       return `The Human Wins!! ${humanChoice} beats ${computerChoice}`;
+    if(humanChoice=='scissors' && computerChoice=='rock' || humanChoice=='rock' && computerChoice=='paper' || humanChoice=='paper' && computerChoice=='scissors'  )
+        return `The Machine Wins!! ${computerChoice} beats ${humanChoice}`;
+}
+
+const humanSelection=getHumanChoice();
+const computerSelection=getComputerChoice();
+
+playRound(humanSelection,computerSelection));
