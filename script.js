@@ -72,7 +72,9 @@ function playGame()
 }
    if(humanScore>computerScore)
     console.log( "Human Wins");
-   else
+   else if(computerScore>humanScore)
     console.log( "Computer Wins");
+   else
+    console.log('Draw');
 }
 playGame();
