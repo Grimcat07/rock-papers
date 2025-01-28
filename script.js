@@ -10,24 +10,6 @@ function getComputerChoice(){
         return "scissors"
 }
 
-function getHumanChoice(){
-    let choicev=(prompt('enter your choice:\n1.Rock\n2.Paper\n3.Scissors'));
-    const hchoice=choicev.toLowerCase();
-    
-    if(hchoice==="rock")
-        return "rock";
-    else if(hchoice==="paper")
-        return "paper";
-    else if(hchoice==="scissors")
-        return "scissors";
-    else
-    {
-        return -1;
-        
-    }
-        
-
-}
 
 let humanScore=0;
 let computerScore=0;
@@ -37,44 +19,72 @@ let computerScore=0;
 
 function playRound(humanChoice,computerChoice){
  
-    if(humanChoice==-1)
-        console.log("invalid human choice");
+        
     if(humanChoice=='rock' && computerChoice=='rock' || humanChoice=='paper' && computerChoice=='paper' ||  humanChoice=='scissors' && computerChoice=='scissors' ) 
     {
-        console.log("the round is a tie"); 
+        humanScore+=0;computerScore+=0;
     } 
     if(humanChoice=='rock' && computerChoice=='scissors' || humanChoice=='paper' && computerChoice=='rock' || humanChoice=='rock' && computerChoice=='scissors')  
     {  
-        console.log(`The Human Wins!! ${humanChoice} beats ${computerChoice}`);
-        humanScore=humanScore+2;computerScore=0;
+        humanScore=humanScore+1;computerScore+=0;
     }
     if(humanChoice=='scissors' && computerChoice=='rock' || humanChoice=='rock' && computerChoice=='paper' || humanChoice=='paper' && computerChoice=='scissors'  )
     {  
-         console.log(`The Machine Wins!! ${computerChoice} beats ${humanChoice}`);
-        humanScore=0;computerScore=computerScore+2;
+        humanScore+=0;computerScore=computerScore+1;
     }
     
 }
+let humanSelection;
 
-function playGame()
-{
-    let rounds=parseInt(prompt("enter the number of rounds"))
+let result;let point=0;
+const div1=document.querySelector(".buttons");
+const rbutton=document.createElement("button");rbutton.setAttribute("id","rockbutton");rbutton.textContent='Rock';
+const pbutton=document.createElement("button");pbutton.setAttribute("id","paperbutton");pbutton.textContent='Paper';
+const sbutton=document.createElement("button");sbutton.setAttribute("id","sbutton");sbutton.textContent='Scissors';
+div1.appendChild(rbutton);
+div1.appendChild(pbutton);
+div1.appendChild(sbutton);
+const buttons=document.querySelectorAll("button");
 
-    
-    for(let i=0;i<rounds;i++)
-{
-    const humanSelection=getHumanChoice();
-    const computerSelection=getComputerChoice();
-    console.log(humanScore);
-    console.log(computerScore)
+buttons.forEach(button => {
+    button.addEventListener("click",(e)=>{
+        const buttonid=e.target.id;
+    switch (buttonid) {
+        case 'rockbutton':
+            playRound("rock",getComputerChoice());
+            break;
+        case 'sbutton':
+            playRound("scissors",getComputerChoice());
+            break;
+        case 'paperbutton':
+            playRound("paper",getComputerChoice());
+            break;
+        default:
+            playRound(-1,getComputerChoice());
+            break;
+    }
+    spanhuman.textContent=`Human:${humanScore}\n`;
+    spancomp.textContent=`Computer:${computerScore}`;
+    if(humanScore ==5 || computerScore==5){
+        spanresult.textContent=result();
+    }
+});
+});
 
-    playRound(humanSelection,computerSelection);
-}
-   if(humanScore>computerScore)
-    console.log( "Human Wins");
-   else if(computerScore>humanScore)
-    console.log( "Computer Wins");
-   else
-    console.log('Draw');
-}
-playGame();
+    result=() =>{
+        if(humanScore==5 ){
+            humanScore=0;computerScore=0;
+            return "Human Wins";}
+           else if(computerScore==5){
+            computerScore=0;humanScore=0;
+            return( "Computer Wins");}
+           else
+            return('Draw');
+    }
+
+const rdiv=document.querySelector(".result");
+const spanhuman=document.querySelector("#human");
+const spancomp=document.querySelector("#computer");
+const spanresult=document.querySelector("#result");
+rdiv.appendChild(spanhuman);rdiv.appendChild(spancomp);rdiv.appendChild(result);
+
