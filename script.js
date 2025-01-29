@@ -82,9 +82,8 @@ buttons.forEach(button => {
             return('Draw');
     }
 
-const rdiv=document.querySelector(".result");
+const sdiv=document.querySelector(".score");
 const spanhuman=document.querySelector("#human");
 const spancomp=document.querySelector("#computer");
 const spanresult=document.querySelector("#result");
-rdiv.appendChild(spanhuman);rdiv.appendChild(spancomp);rdiv.appendChild(result);
 
